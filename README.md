@@ -1,4 +1,4 @@
-![tellitsolutions-name-500px](https://user-images.githubusercontent.com/98328584/150798126-aaa5c634-685a-4d9e-854f-8945b6f7de78.png)
+![Tellit Toolkit logo](https://user-images.githubusercontent.com/98328584/150824263-6276691d-3671-4c84-9377-02691e952de7.PNG)
 
 # Tellit Toolkit
 
