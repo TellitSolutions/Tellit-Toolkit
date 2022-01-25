@@ -1,5 +1,4 @@
-![MicrosoftTeams-image](https://user-images.githubusercontent.com/98328584/150933990-f1d78401-d103-42c2-94b8-4a636b996e7f.png)
-
+![TellitToolkit-logo](https://user-images.githubusercontent.com/98328584/150934281-1a3af557-2be5-426d-b6d7-e1de4869f5a4.png)
 
 # Tellit Toolkit
 
