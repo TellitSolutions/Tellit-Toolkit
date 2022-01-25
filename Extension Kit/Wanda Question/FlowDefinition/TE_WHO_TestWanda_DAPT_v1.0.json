@@ -1,0 +1,149 @@
+{
+  "FlowId": "2dec19ca-3c6d-4e7d-8eff-e45864a02098",
+  "FlowType": "Customer",
+  "Version": 7,
+  "Description": "TE_WHO_TestWanda_DAPT_v1.0",
+  "UserId": "5b3475c1-609a-4b14-a62a-974f248b6505\\dan@tellitsolutions.no",
+  "Trigger": {
+    "Type": "http-webhook",
+    "Version": 2,
+    "Config": {
+      "Name": "TriggerWanda",
+      "TenantId": null,
+      "ContentType": "Json",
+      "AuthenticationType": "None"
+    }
+  },
+  "Actions": [
+    {
+      "Type": "u4id-resolver",
+      "Version": 1,
+      "Filter": [],
+      "Condition": [],
+      "Input": {
+        "Name": "2f15ef40-ef2b-437e-8821-106b971f5994",
+        "Properties": [
+          {
+            "Name": "TenantId",
+            "Value": {
+              "Text": null
+            }
+          },
+          {
+            "Name": "Email",
+            "Value": {
+              "Text": "dan@tellitsolutions.no"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "da-question",
+      "Version": 1,
+      "Filter": [],
+      "Condition": [],
+      "Input": {
+        "Name": "17248344-0cf1-408c-9bf8-c4b93d69ae08",
+        "Properties": [
+          {
+            "Name": "Unit4Id",
+            "Value": {
+              "Text": "{{step1.Unit4Id}}"
+            }
+          },
+          {
+            "Name": "Question",
+            "Value": {
+              "Text": "Ask user a true/false question, and act on the reply. Was this OK {{step1.Name}}?"
+            }
+          },
+          {
+            "Name": "ExpectedDataType",
+            "Value": {
+              "Text": "Bool"
+            }
+          },
+          {
+            "Name": "ConfirmationMessage",
+            "Value": {
+              "Text": "Thank you for your response {{step1.Name}}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "stop",
+      "Version": 1,
+      "Filter": [],
+      "Condition": [
+        {
+          "BodyPath": "{{ step2.Answer }}",
+          "Operation": 2,
+          "Value": "True"
+        }
+      ],
+      "Input": {
+        "Name": "10d21fe0-12c4-4261-8983-02cadba9fe82",
+        "Properties": [
+          {
+            "Name": "StopWith",
+            "Value": {
+              "Text": "Success"
+            }
+          },
+          {
+            "Name": "Summary",
+            "Value": {
+              "Text": "End user responded positive / true."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "stop",
+      "Version": 1,
+      "Filter": [],
+      "Condition": [
+        {
+          "BodyPath": "{{ step2.Answer }}",
+          "Operation": 2,
+          "Value": "False"
+        }
+      ],
+      "Input": {
+        "Name": "c796cc08-763f-43ca-8581-be135bd41b23",
+        "Properties": [
+          {
+            "Name": "StopWith",
+            "Value": {
+              "Text": "Success"
+            }
+          },
+          {
+            "Name": "Summary",
+            "Value": {
+              "Text": "End user responded negative / false"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "IsParked": false,
+  "Status": "Active",
+  "Configuration": {
+    "IsSensitive": false
+  },
+  "LastChangedBy": "5b3475c1-609a-4b14-a62a-974f248b6505\\dan@tellitsolutions.no",
+  "LastChangedAt": "2022-01-25T13:55:18Z",
+  "LastAvailableHistoryAt": "0001-01-01T00:00:00Z",
+  "FeatureFlags": [
+    {
+      "Name": "templatingV2",
+      "IsEnabled": true
+    }
+  ]
+}
