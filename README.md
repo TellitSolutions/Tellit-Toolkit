@@ -36,10 +36,8 @@ Se example of using Wanda to inform end user:
 
 # Unit4 REST APIs
 
-All REST APIs in Unit4 is documented in Swagger UI in something called a webapi-server. The URL to your webapi-server can be obtained from your system administrator.
-Typically the Swagger UI definition looks similar to the example below:
-![image](https://user-images.githubusercontent.com/98328584/150830167-eb06f506-24de-44f1-bd4b-ae24c7e0d02b.png)
+All REST APIs in Unit4 is documented in Swagger UI in something called a webapi-server. 
+The URL to your webapi-server can be obtained from your system administrator.
+Please see the folder REST APIs in our repository for more information and examples.
 
-Unit4s REST APIs are using ODATA syntax to retrieve data. 
-You can find some useful information on ODATA in this link: https://docs.microsoft.com/en-us/dynamics-nav/using-filter-expressions-in-odata-uris
 
