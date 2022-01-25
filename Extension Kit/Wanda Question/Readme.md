@@ -10,10 +10,18 @@ Below you can see an example of the dialogue between the end user and Wanda in T
 ![Wanda communication](https://user-images.githubusercontent.com/98328584/150991795-9a4d406a-7f14-4143-bd98-4dbda34621f1.PNG)
 
 
-# Actual usecase 1
+
+# Actual usecase 
 
 Tellit Solutions has developed an standard integration with ELMA (Peppol SMP) where we communicate with the end user through Wanda Questions if there is a need to update the customer register.
 If the end user gives a positive response, we update the customer using the Customer REST API.
+
+
+# Download Flows
+The exported flow can be found in the following location, you will need both JSON files and these can be imported into your Extension Kit instance via the 'Import' button within the 'Flows' area.
+
+[Flow Definitions](https://github.com/TellitSolutions/Tellit-Toolkit/tree/main/Extension%20Kit/Wanda%20Question/FlowDefinition)
+
 
 # Created By
 Dan Nylænder - Tellit Solutions - dan@tellitsolutions.no
