@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "33f8bb0b-1bba-41fa-a8e2-db5820018916",
+		"name": "Examples Employee",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Patch Employee - Update bank account",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "agresso",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sysenlong",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json-patch+json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n  \"path\": \"paymentInformation\",\r\n  \"op\": \"Replace\",\r\n  \"value\": {\r\n    \"bankAccount\": \"50841051308\"\r\n  }\r\n}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Unit4ERP-BaseURL-EK}}/employees/90000000?companyId=EN\n",
+					"host": [
+						"{{Unit4ERP-BaseURL-EK}}"
+					],
+					"path": [
+						"employees",
+						"90000000"
+					],
+					"query": [
+						{
+							"key": "companyId",
+							"value": "EN\n"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employees where name starts with 'An'",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "agresso",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sysenlong",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Unit4ERP-BaseURL-EK}}/v1/objects/employees?companyId=EN&select=companyId%2CpersonId%2C%20personName%2C%20age%2C%20gender&filter=startswith(personName%2C%20'An')",
+					"host": [
+						"{{Unit4ERP-BaseURL-EK}}"
+					],
+					"path": [
+						"v1",
+						"objects",
+						"employees"
+					],
+					"query": [
+						{
+							"key": "companyId",
+							"value": "EN"
+						},
+						{
+							"key": "select",
+							"value": "companyId%2CpersonId%2C%20personName%2C%20age%2C%20gender"
+						},
+						{
+							"key": "filter",
+							"value": "startswith(personName%2C%20'An')"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all female employees above 60",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "agresso",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sysenlong",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Unit4ERP-BaseURL-EK}}/v1/objects/employees?companyId=EN&select=companyId%2CpersonId%2C%20personName%2C%20age%2C%20gender&filter=age%20gt%2060%20and%20gender%20eq%20'F'",
+					"host": [
+						"{{Unit4ERP-BaseURL-EK}}"
+					],
+					"path": [
+						"v1",
+						"objects",
+						"employees"
+					],
+					"query": [
+						{
+							"key": "companyId",
+							"value": "EN"
+						},
+						{
+							"key": "select",
+							"value": "companyId%2CpersonId%2C%20personName%2C%20age%2C%20gender"
+						},
+						{
+							"key": "filter",
+							"value": "age%20gt%2060%20and%20gender%20eq%20'F'"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post new Employee",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "agresso",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sysenlong",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dateFrom\": \"2018-01-01T00:00:00.000\",\r\n    \"name\": \"Testbasis 2, Bruker 2\",\r\n    \"status\": \"N\",\r\n    \"birthDate\": \"2002-03-24T00:00:00.000\",\r\n    \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n    \"additionalInformation\": {\r\n        \"graduationYear\": 0,\r\n        \"hasOvertime\": false,\r\n        \"isHourlyPaid\": false,\r\n        \"message\": \"\",\r\n        \"payYear\": 0,\r\n        \"piecework\": false,\r\n        \"probationPeriod\": \"1900-01-01T00:00:00.000\",\r\n        \"relatedPersonId\": \"1004\",\r\n        \"retirementAge\": 0,\r\n        \"roomNo\": \"\",\r\n        \"startDate\": \"1900-01-01T00:00:00.000\",\r\n        \"terminationReason\": \"\"\r\n    },\r\n    \"companyId\": \"D1\",\r\n    \"customInformation\": {\r\n        \"customCategoryField1\": \"\",\r\n        \"customCategoryField2\": \"\",\r\n        \"customCategoryField3\": \"\",\r\n        \"customCategoryField4\": \"\",\r\n        \"customCode1\": \"\",\r\n        \"customCode2\": \"\",\r\n        \"customCode3\": \"\",\r\n        \"customCode4\": \"\",\r\n        \"customCode5\": \"\",\r\n        \"customCode6\": \"\",\r\n        \"customCode7\": \"\",\r\n        \"customCode8\": \"\",\r\n        \"customDate1\": \"1900-01-01T00:00:00.000\",\r\n        \"customDate2\": \"1900-01-01T00:00:00.000\",\r\n        \"customDate3\": \"1900-01-01T00:00:00.000\",\r\n        \"customFlag1\": false,\r\n        \"customFlag2\": false\r\n    },\r\n    \"languageCode\": \"NO\",\r\n    \"lastUpdated\": {\r\n        \"updatedAt\": \"2019-10-30T07:36:26.000\",\r\n        \"updatedBy\": \"SYSTEM\"\r\n    },\r\n    \"nameInformation\": {\r\n        \"aliasName\": \"1004\",\r\n        \"customNameField1\": \"\",\r\n        \"customNameField2\": \"\",\r\n        \"customNameField3\": \"\",\r\n        \"customNameField4\": \"\",\r\n        \"customNamePart\": \"\",\r\n        \"firstName\": \"Bruker 2\",\r\n        \"surname\": \"Testbasis 2\",\r\n        \"title\": \"\"\r\n    },\r\n    \"partTimePct\": 60.0,\r\n    \"paymentInformation\": {\r\n        \"bankAccount\": \"99990813570\",\r\n        \"bankClearingCode\": \"\",\r\n        \"contractId\": \"\",\r\n        \"currencyCode\": \"NOK\",\r\n        \"iban\": \"\",\r\n        \"otherAccount\": \"\",\r\n        \"payMethod\": \"IP\",\r\n        \"postalAccount\": \"74076602356\",\r\n        \"supplierGroupId\": \"4\",\r\n        \"supplierId\": \"1004\",\r\n        \"swift\": \"\"\r\n    },\r\n    \"payrollInformation\": {\r\n        \"batchId\": 0,\r\n        \"customTaxCode\": \"\",\r\n        \"notes\": \"\",\r\n        \"payPeriod\": 0,\r\n        \"payStatus\": \"N\",\r\n        \"taxBasis\": \"\",\r\n        \"taxCode\": \"\"\r\n    },\r\n    \"personalInformation\": {\r\n        \"citizenship\": \"\",\r\n        \"gender\": \"\",\r\n        \"maritialStatus\": \"\",\r\n        \"nationalIdentityNo\": \"0000000019\"\r\n    },\r\n    \"personId\": \"1004\",\r\n    \"personnelType\": \"1\",\r\n    \"employments\": [\r\n        {\r\n            \"status\": \"N\",\r\n            \"workSchedule\": \"\",\r\n            \"positionId\": \"10\",\r\n            \"positionCodeId\": \"1\",\r\n            \"startDate\": \"2019-12-01T00:00:00.000\",\r\n            \"endDate\": \"2099-12-31T00:00:00.000\",\r\n            \"allocationPercentage\": 60.0,\r\n            \"customPercentage\": 50.0,\r\n            \"employmentType\": \"V\",\r\n            \"customAttributeId\": \"L2\",\r\n            \"customValue\": \"A\",\r\n            \"isMainPosition\": false,\r\n            \"payrollInformation\": {\r\n                \"payScale\": \"\",\r\n                \"payScaleAlternative\": 0,\r\n                \"payStep\": \"\",\r\n                \"seniorityDate\": \"1900-01-01T00:00:00.000\",\r\n                \"excludeFromSeniorityAdvancement\": false,\r\n                \"lastAdvancementDate\": \"1900-01-01T00:00:00.000\",\r\n                \"reasonChangeCode\": \"\"\r\n            },\r\n            \"sorting\": 0,\r\n            \"relatedValues\": [\r\n                {\r\n                    \"status\": \"N\",\r\n                    \"dateFrom\": \"2019-12-01T00:00:00.000\",\r\n                    \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n                    \"percentage\": 0.0,\r\n                    \"positionId\": \"10\",\r\n                    \"relationGroup\": \"10\",\r\n                    \"isDefaulted\": false,\r\n                    \"useInFixedPd\": true,\r\n                    \"useInAccountingCategories\": true,\r\n                    \"useInRateCalculation\": true,\r\n                    \"useInReport\": true,\r\n                    \"relationId\": \"MNBB\",\r\n                    \"relationName\": \"ARBTIDGR\",\r\n                    \"relatedValue\": \"40,0\"\r\n                },\r\n                {\r\n                    \"status\": \"N\",\r\n                    \"dateFrom\": \"2019-12-01T00:00:00.000\",\r\n                    \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n                    \"percentage\": 0.0,\r\n                    \"positionId\": \"10\",\r\n                    \"relationGroup\": \"25\",\r\n                    \"isDefaulted\": false,\r\n                    \"useInFixedPd\": true,\r\n                    \"useInAccountingCategories\": true,\r\n                    \"useInRateCalculation\": true,\r\n                    \"useInReport\": true,\r\n                    \"relationId\": \"MNMB\",\r\n                    \"relationName\": \"AMARBFORHTYPE\",\r\n                    \"relatedValue\": \"IKKE RELEVANT\"\r\n                },\r\n                {\r\n                    \"status\": \"N\",\r\n                    \"dateFrom\": \"2019-12-01T00:00:00.000\",\r\n                    \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n                    \"percentage\": 0.0,\r\n                    \"positionId\": \"10\",\r\n                    \"relationGroup\": \"25\",\r\n                    \"isDefaulted\": false,\r\n                    \"useInFixedPd\": true,\r\n                    \"useInAccountingCategories\": true,\r\n                    \"useInRateCalculation\": true,\r\n                    \"useInReport\": true,\r\n                    \"relationId\": \"MNMC\",\r\n                    \"relationName\": \"AMAVLONNTYPE\",\r\n                    \"relatedValue\": \"TIMELONNET\"\r\n                },\r\n                {\r\n                    \"status\": \"N\",\r\n                    \"dateFrom\": \"2019-12-01T00:00:00.000\",\r\n                    \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n                    \"percentage\": 0.0,\r\n                    \"positionId\": \"10\",\r\n                    \"relationGroup\": \"25\",\r\n                    \"isDefaulted\": false,\r\n                    \"useInFixedPd\": true,\r\n                    \"useInAccountingCategories\": true,\r\n                    \"useInRateCalculation\": true,\r\n                    \"useInReport\": true,\r\n                    \"relationId\": \"MNMD\",\r\n                    \"relationName\": \"AMARBTIDORDNING\",\r\n                    \"relatedValue\": \"IKKE RELEVANT\"\r\n                },\r\n                {\r\n                    \"status\": \"N\",\r\n                    \"dateFrom\": \"2019-12-01T00:00:00.000\",\r\n                    \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n                    \"percentage\": 0.0,\r\n                    \"positionId\": \"10\",\r\n                    \"relationGroup\": \"25\",\r\n                    \"isDefaulted\": false,\r\n                    \"useInFixedPd\": true,\r\n                    \"useInAccountingCategories\": true,\r\n                    \"useInRateCalculation\": true,\r\n                    \"useInReport\": true,\r\n                    \"relationId\": \"CP\",\r\n                    \"relationName\": \"YRKKODE\",\r\n                    \"relatedValue\": \"4142113\"\r\n                },\r\n                {\r\n                    \"status\": \"N\",\r\n                    \"dateFrom\": \"2019-12-01T00:00:00.000\",\r\n                    \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n                    \"percentage\": 0.0,\r\n                    \"positionId\": \"10\",\r\n                    \"relationGroup\": \"20\",\r\n                    \"isDefaulted\": false,\r\n                    \"useInFixedPd\": true,\r\n                    \"useInAccountingCategories\": true,\r\n                    \"useInRateCalculation\": true,\r\n                    \"useInReport\": true,\r\n                    \"relationId\": \"C8\",\r\n                    \"relationName\": \"LONNGRP\",\r\n                    \"relatedValue\": \"TLONN\"\r\n                },\r\n                {\r\n                    \"status\": \"N\",\r\n                    \"dateFrom\": \"2019-12-01T00:00:00.000\",\r\n                    \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n                    \"percentage\": 0.0,\r\n                    \"positionId\": \"10\",\r\n                    \"relationGroup\": \"40\",\r\n                    \"isDefaulted\": false,\r\n                    \"useInFixedPd\": true,\r\n                    \"useInAccountingCategories\": true,\r\n                    \"useInRateCalculation\": true,\r\n                    \"useInReport\": true,\r\n                    \"relationId\": \"MNDA\",\r\n                    \"relationName\": \"PENSJON\",\r\n                    \"relatedValue\": \"PENSJON\"\r\n                },\r\n                {\r\n                    \"status\": \"N\",\r\n                    \"dateFrom\": \"2019-12-01T00:00:00.000\",\r\n                    \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n                    \"percentage\": 0.0,\r\n                    \"positionId\": \"10\",\r\n                    \"relationGroup\": \"40\",\r\n                    \"isDefaulted\": false,\r\n                    \"useInFixedPd\": true,\r\n                    \"useInAccountingCategories\": true,\r\n                    \"useInRateCalculation\": true,\r\n                    \"useInReport\": true,\r\n                    \"relationId\": \"MNAD\",\r\n                    \"relationName\": \"AVLFORM\",\r\n                    \"relatedValue\": \"T\"\r\n                },\r\n                {\r\n                    \"status\": \"N\",\r\n                    \"dateFrom\": \"2019-12-01T00:00:00.000\",\r\n                    \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n                    \"percentage\": 0.0,\r\n                    \"positionId\": \"10\",\r\n                    \"relationGroup\": \"10\",\r\n                    \"isDefaulted\": false,\r\n                    \"useInFixedPd\": true,\r\n                    \"useInAccountingCategories\": true,\r\n                    \"useInRateCalculation\": true,\r\n                    \"useInReport\": true,\r\n                    \"relationId\": \"C1\",\r\n                    \"relationName\": \"KOSTSTED\",\r\n                    \"relatedValue\": \"300\"\r\n                },\r\n                {\r\n                    \"status\": \"N\",\r\n                    \"dateFrom\": \"2019-12-01T00:00:00.000\",\r\n                    \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n                    \"percentage\": 0.0,\r\n                    \"positionId\": \"10\",\r\n                    \"relationGroup\": \"10\",\r\n                    \"isDefaulted\": false,\r\n                    \"useInFixedPd\": true,\r\n                    \"useInAccountingCategories\": true,\r\n                    \"useInRateCalculation\": true,\r\n                    \"useInReport\": true,\r\n                    \"relationId\": \"MNAH\",\r\n                    \"relationName\": \"ARBSTED\",\r\n                    \"relatedValue\": \"ARBSTED\"\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"contactPoints\": [\r\n        {\r\n            \"address\": {\r\n                \"countryCode\": \"NO\",\r\n                \"place\": \"DRAMMEN\",\r\n                \"postcode\": \"3044\",\r\n                \"province\": \"\",\r\n                \"streetAddress\": \"Bjølsenveien. 36\"\r\n            },\r\n            \"additionalContactInfo\": {\r\n                \"contactPerson\": \"\",\r\n                \"contactPosition\": \"\",\r\n                \"eMail\": \"\",\r\n                \"eMailCc\": \"\",\r\n                \"gtin\": \"\",\r\n                \"url\": \"\"\r\n            },\r\n            \"contactPointType\": \"1\",\r\n            \"lastUpdated\": {\r\n                \"updatedAt\": \"2002-02-18T12:26:00.000\",\r\n                \"updatedBy\": \"syspr\"\r\n            },\r\n            \"phoneNumbers\": {\r\n                \"telephone1\": \"22 23 51 78\",\r\n                \"telephone2\": \"\",\r\n                \"telephone3\": \"\",\r\n                \"telephone4\": \"\",\r\n                \"telephone5\": \"\",\r\n                \"telephone6\": \"\",\r\n                \"telephone7\": \"\"\r\n            },\r\n            \"sortOrder\": 0\r\n        }\r\n    ],\r\n    \"customFieldGroups\": {},\r\n    \"relatedValues\": [\r\n        {\r\n            \"dateFrom\": \"2018-01-01T00:00:00.000\",\r\n            \"status\": \"N\",\r\n            \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n            \"description\": \"Ledelse\",\r\n            \"percentage\": 0.0,\r\n            \"relationGroup\": \"10\",\r\n            \"relationId\": \"C1\",\r\n            \"relationName\": \"KOSTSTED\",\r\n            \"relatedValue\": \"100\"\r\n        },\r\n        {\r\n            \"dateFrom\": \"2018-01-01T00:00:00.000\",\r\n            \"status\": \"N\",\r\n            \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n            \"description\": \"Arbeidssted\",\r\n            \"percentage\": 0.0,\r\n            \"relationGroup\": \"10\",\r\n            \"relationId\": \"MNAH\",\r\n            \"relationName\": \"ARBSTED\",\r\n            \"relatedValue\": \"ARBSTED\"\r\n        },\r\n        {\r\n            \"dateFrom\": \"2018-01-01T00:00:00.000\",\r\n            \"status\": \"N\",\r\n            \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n            \"description\": \"Fast ansatt\",\r\n            \"percentage\": 0.0,\r\n            \"relationGroup\": \"90\",\r\n            \"relationId\": \"C2\",\r\n            \"relationName\": \"RESSTYPE\",\r\n            \"relatedValue\": \"1\"\r\n        },\r\n        {\r\n            \"dateFrom\": \"2018-01-01T00:00:00.000\",\r\n            \"status\": \"N\",\r\n            \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n            \"description\": \"Kostnadskategori 1\",\r\n            \"percentage\": 0.0,\r\n            \"relationGroup\": \"\",\r\n            \"relationId\": \"B3\",\r\n            \"relationName\": \"KOST.KAT\",\r\n            \"relatedValue\": \"KAT1\"\r\n        },\r\n        {\r\n            \"dateFrom\": \"2018-01-01T00:00:00.000\",\r\n            \"status\": \"N\",\r\n            \"dateTo\": \"2099-12-31T00:00:00.000\",\r\n            \"description\": \"Juniorkonsulent\",\r\n            \"percentage\": 0.0,\r\n            \"relationGroup\": \"\",\r\n            \"relationId\": \"B2\",\r\n            \"relationName\": \"INNT.KAT\",\r\n            \"relatedValue\": \"KON1\"\r\n        }\r\n    ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Unit4ERP-BaseURL-EK}}/v1/employees/",
+					"host": [
+						"{{Unit4ERP-BaseURL-EK}}"
+					],
+					"path": [
+						"v1",
+						"employees",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Unit4ERP-BaseURL-EK",
+			"value": "https://u4-ek-workshop.u4pp.com/Unit4ERP-web-api"
+		}
+	]
+}

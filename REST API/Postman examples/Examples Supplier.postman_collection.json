@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "267ae046-a3c3-4096-be18-23ea0aff30ff",
+		"name": "Examples Supplier",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Suppliers with relValue COSTC 210",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "agresso",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sysenlong",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Unit4ERP-BaseURL-EK}}/v1/objects/suppliers/?companyId eq 'EN'&filter=supplierId eq '1000' and relatedValues/any(rv: rv/relatedValue eq '210' and rv/relationId eq 'C1')",
+					"host": [
+						"{{Unit4ERP-BaseURL-EK}}"
+					],
+					"path": [
+						"v1",
+						"objects",
+						"suppliers",
+						""
+					],
+					"query": [
+						{
+							"key": "companyId eq 'EN'",
+							"value": null
+						},
+						{
+							"key": "filter",
+							"value": "supplierId eq '1000' and relatedValues/any(rv: rv/relatedValue eq '210' and rv/relationId eq 'C1')"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Suppliers with Invoice address",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "agresso",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sysenlong",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Unit4ERP-BaseURL-EK}}/v1/objects/suppliers/?companyId eq 'EN'&filter=supplierId eq '1000' and contactPoints/any(cp: cp/contactPointType eq '3')",
+					"host": [
+						"{{Unit4ERP-BaseURL-EK}}"
+					],
+					"path": [
+						"v1",
+						"objects",
+						"suppliers",
+						""
+					],
+					"query": [
+						{
+							"key": "companyId eq 'EN'",
+							"value": null
+						},
+						{
+							"key": "filter",
+							"value": "supplierId eq '1000' and contactPoints/any(cp: cp/contactPointType eq '3')"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Supplier - Set status Parked",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "agresso",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "u4dan",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json-patch+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"path\": \"status\",\r\n        \"op\": \"Replace\",\r\n        \"value\": \"P\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Unit4ERP-BaseURL-EK}}/v1/suppliers/1102?companyId=EN",
+					"host": [
+						"{{Unit4ERP-BaseURL-EK}}"
+					],
+					"path": [
+						"v1",
+						"suppliers",
+						"1102"
+					],
+					"query": [
+						{
+							"key": "companyId",
+							"value": "EN"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Unit4ERP-BaseURL-EK",
+			"value": "https://u4-ek-workshop.u4pp.com/Unit4ERP-web-api"
+		}
+	]
+}
