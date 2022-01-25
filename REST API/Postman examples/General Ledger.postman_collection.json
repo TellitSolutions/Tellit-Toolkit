@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "4f153dde-6f76-4c16-ba62-5b3d37f89a4d",
+		"name": "General Ledger",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get GL-transactions greater than a certain date",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "agresso",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sysenlong",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Unit4ERP-BaseURL}}/v1/objects/general-ledger-transactions?companyId=EN&filter=lastUpdated%2FupdatedAt%20gt%202018-06-21T00%3A00%3A00Z&posted=true",
+					"host": [
+						"{{Unit4ERP-BaseURL}}"
+					],
+					"path": [
+						"v1",
+						"objects",
+						"general-ledger-transactions"
+					],
+					"query": [
+						{
+							"key": "companyId",
+							"value": "EN"
+						},
+						{
+							"key": "filter",
+							"value": "lastUpdated%2FupdatedAt%20gt%202018-06-21T00%3A00%3A00Z"
+						},
+						{
+							"key": "posted",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "agresso",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "sysenlong",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Unit4ERP-BaseURL",
+			"value": "https://pp-preview-t2.u4pp.com/BusinessWorld-web-api-template"
+		}
+	]
+}
