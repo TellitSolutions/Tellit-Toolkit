@@ -1,0 +1,225 @@
+{
+	"info": {
+		"_postman_id": "d178cc4b-b98f-447a-a63a-0231dcbab0e7",
+		"name": "Examples Customer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get customers modified after 20/05/2020",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "agresso",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sysenlong",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Unit4ERP-BaseURL-EK}}/v1/objects/customers?companyId=EN&filter=lastUpdated/updatedAt ge 2020-05-20T00:00:00.000z",
+					"host": [
+						"{{Unit4ERP-BaseURL-EK}}"
+					],
+					"path": [
+						"v1",
+						"objects",
+						"customers"
+					],
+					"query": [
+						{
+							"key": "companyId",
+							"value": "EN"
+						},
+						{
+							"key": "filter",
+							"value": "lastUpdated/updatedAt ge 2020-05-20T00:00:00.000z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new customer",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "agresso",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sysenlong",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"aliasName\": \"ANDERSEN\",\r\n  \"companyId\": \"EN\",\r\n  \"companyRegistrationNumber\": \"GB1581263115\",\r\n  \"countryCode\": \"GB\",\r\n  \"customerGroupId\": \"1\",\r\n  \"customerId\": \"\",\r\n  \"customerName\": \"Andersen Consulting UK Ltd\",\r\n  \"externalReference\": \"804735132\",\r\n  \"invoice\": {\r\n    \"calculatePayDiscountOnTax\": true,\r\n    \"checkCreditOnHeadOffice\": false,\r\n    \"creditLimit\": 300000,\r\n    \"currencyCode\": \"GBP\",\r\n    \"discountCode\": \"\",\r\n    \"hasFixedCurrency\": true,\r\n    \"hasFixedPaymentTerms\": true,\r\n    \"hasFixedTaxSystem\": false,\r\n    \"headOffice\": \"1000\",\r\n    \"isSundryCustomer\": false,\r\n    \"languageCode\": \"EN\",\r\n    \"maxCreditDays\": 0,\r\n    \"message\": \"\",\r\n    \"paymentPlanTemplateCode\": \"\",\r\n    \"paymentTermsId\": \"30\",\r\n    \"supplierId\": \"1007\",\r\n    \"taxSystem\": \"\"\r\n  },\r\n  \"lastUpdated\": {\r\n    \"updatedAt\": \"2020-11-10T14:58:44.000\",\r\n    \"updatedBy\": \"U4DAN\"\r\n  },\r\n  \"notes\": \"abc\",\r\n  \"payment\": {\r\n    \"bankAccount\": \"00000000019\",\r\n    \"bankClearingCode\": \"\",\r\n    \"debtCollectionCode\": \"IK2\",\r\n    \"expiryDate\": \"1900-01-01T00:00:00.000\",\r\n    \"iban\": \"\",\r\n    \"otherAccount\": \"\",\r\n    \"payMethod\": \"CH\",\r\n    \"payRecipient\": \"\",\r\n    \"postalAccount\": \"00000000019\",\r\n    \"status\": \"Active\",\r\n    \"swift\": \"\"\r\n  },\r\n  \"vatRegistrationNumber\": \"2\",\r\n  \"contactPoints\": [\r\n    {\r\n      \"additionalContactInfo\": {\r\n        \"contactPerson\": \"Steve Bannister\",\r\n        \"contactPosition\": \"\",\r\n        \"eMail\": \"\",\r\n        \"eMailCc\": \"\",\r\n        \"gtin\": \"\",\r\n        \"url\": \"\"\r\n      },\r\n      \"address\": {\r\n        \"countryCode\": \"GB\",\r\n        \"place\": \"Victoria\",\r\n        \"postcode\": \"\",\r\n        \"province\": \"\",\r\n        \"streetAddress\": \"2 Arundel Street 1\"\r\n      },\r\n      \"contactPointType\": \"1\",\r\n      \"lastUpdated\": {\r\n        \"updatedAt\": \"2020-09-09T16:52:58.000\",\r\n        \"updatedBy\": \"SYSEN\"\r\n      },\r\n      \"phoneNumbers\": {\r\n        \"telephone1\": \"+44 71 4385000\",\r\n        \"telephone2\": \"+44 71 8311133\",\r\n        \"telephone3\": \"\",\r\n        \"telephone4\": \"\",\r\n        \"telephone5\": \"\",\r\n        \"telephone6\": \"\",\r\n        \"telephone7\": \"\"\r\n      },\r\n      \"sortOrder\": 0\r\n    },\r\n    {\r\n      \"additionalContactInfo\": {\r\n        \"contactPerson\": \"\",\r\n        \"contactPosition\": \"\",\r\n        \"eMail\": \"\",\r\n        \"eMailCc\": \"\",\r\n        \"gtin\": \"\",\r\n        \"url\": \"\"\r\n      },\r\n      \"address\": {\r\n        \"countryCode\": \"GB\",\r\n        \"place\": \"\",\r\n        \"postcode\": \"\",\r\n        \"province\": \"\",\r\n        \"streetAddress\": \"{{step2:ParsedContent.Envelope.Body.checkVatResponse.vatNumber}}\"\r\n      },\r\n      \"contactPointType\": \"6\",\r\n      \"lastUpdated\": {\r\n        \"updatedAt\": \"2020-05-13T16:24:15.000\",\r\n        \"updatedBy\": \"SYSEN\"\r\n      },\r\n      \"phoneNumbers\": {\r\n        \"telephone1\": \"\",\r\n        \"telephone2\": \"\",\r\n        \"telephone3\": \"\",\r\n        \"telephone4\": \"\",\r\n        \"telephone5\": \"\",\r\n        \"telephone6\": \"\",\r\n        \"telephone7\": \"\"\r\n      },\r\n      \"sortOrder\": 0\r\n    }\r\n  ],\r\n  \"customFieldGroups\": {\r\n    \"mfa\": {\r\n      \"name\": \"ANDERSEN WANDA TEST\",\r\n      \"age\": 0,\r\n      \"link_fx\": \"www.vg.no\"\r\n    },\r\n    \"fftest\": [\r\n      {\r\n        \"rowId\": 3,\r\n        \"big_number_fx\": 2,\r\n        \"big_number_2_fx\": 0,\r\n        \"small_number_fx\": 4,\r\n        \"small_number_2_fx\": 3,\r\n        \"text_fx\": \"\",\r\n        \"float_fx\": 0,\r\n        \"date_fx\": \"1900-01-01T00:00:00.000\",\r\n        \"check_box_fx\": false,\r\n        \"amount_fx\": 0,\r\n        \"period_fx\": 0,\r\n        \"attribute_fx\": \"\",\r\n        \"related_attribute_fx\": \"\"\r\n      }\r\n    ],\r\n    \"creditrating\": {\r\n      \"credit_rating_fx\": \"A\",\r\n      \"credit_rating_desc_fx\": \"\",\r\n      \"provider_value_fx\": 69,\r\n      \"update_credit_rating_fx\": false,\r\n      \"last_credit_check_str_fx\": \"\"\r\n    }\r\n  },\r\n  \"relatedValues\": [\r\n    {\r\n      \"unitValue\": 0,\r\n      \"relationGroup\": \"\",\r\n      \"relationId\": \"AO\",\r\n      \"relationName\": \"MARKET\",\r\n      \"relatedValue\": \"ASIA\",\r\n      \"percentage\": 100,\r\n      \"dateFrom\": \"1900-01-01T00:00:00.000\",\r\n      \"dateTo\": \"2099-12-31T00:00:00.000\"\r\n    },\r\n    {\r\n      \"unitValue\": 0,\r\n      \"relationGroup\": \"\",\r\n      \"relationId\": \"GD\",\r\n      \"relationName\": \"PRIOR\",\r\n      \"relatedValue\": \"2\",\r\n      \"percentage\": 100,\r\n      \"dateFrom\": \"1900-01-01T00:00:00.000\",\r\n      \"dateTo\": \"2099-12-31T00:00:00.000\"\r\n    },\r\n    {\r\n      \"unitValue\": 0,\r\n      \"relationGroup\": \"\",\r\n      \"relationId\": \"AJ\",\r\n      \"relationName\": \"CUSTGRP\",\r\n      \"relatedValue\": \"1\",\r\n      \"percentage\": 100,\r\n      \"dateFrom\": \"1900-01-01T00:00:00.000\",\r\n      \"dateTo\": \"2099-12-31T00:00:00.000\"\r\n    },\r\n    {\r\n      \"unitValue\": 0,\r\n      \"relationGroup\": \"\",\r\n      \"relationId\": \"A11\",\r\n      \"relationName\": \"ROLEID\",\r\n      \"relatedValue\": \"APIDC\",\r\n      \"percentage\": 100,\r\n      \"dateFrom\": \"1900-01-01T00:00:00.000\",\r\n      \"dateTo\": \"2099-12-31T00:00:00.000\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Unit4ERP-BaseURL-EK}}/v1/customers",
+					"host": [
+						"{{Unit4ERP-BaseURL-EK}}"
+					],
+					"path": [
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get customers where name starts with 'M'",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "agresso",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sysenlong",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Unit4ERP-BaseURL-EK}}/v1/objects/customers?companyId=EN&filter=startswith(customerName,'M')",
+					"host": [
+						"{{Unit4ERP-BaseURL-EK}}"
+					],
+					"path": [
+						"v1",
+						"objects",
+						"customers"
+					],
+					"query": [
+						{
+							"key": "companyId",
+							"value": "EN"
+						},
+						{
+							"key": "filter",
+							"value": "startswith(customerName,'M')"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Customer - Update name",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "agresso",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sysenlong",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json-patch+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n\r\n  {\r\n    \"path\": \"/customerName\",\r\n    \"op\": \"replace\",\r\n    \"value\": \"Company name Updated\"\r\n  }\r\n\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Unit4ERP-BaseURL-EK}}/v1/customers/99000024?companyId=EN",
+					"host": [
+						"{{Unit4ERP-BaseURL-EK}}"
+					],
+					"path": [
+						"v1",
+						"customers",
+						"99000024"
+					],
+					"query": [
+						{
+							"key": "companyId",
+							"value": "EN"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Unit4ERP-BaseURL-EK",
+			"value": "https://u4-ek-workshop.u4pp.com/Unit4ERP-web-api"
+		}
+	]
+}
