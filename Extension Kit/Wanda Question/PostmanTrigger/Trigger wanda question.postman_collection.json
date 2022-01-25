@@ -1,0 +1,29 @@
+{
+	"info": {
+		"_postman_id": "d5370c8a-9141-4b97-a881-eed2cf644281",
+		"name": "Trigger wanda question",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Trigger Wanda",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{WebHook-URL}}",
+					"host": [
+						"{{WebHook-URL}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "WebHook-URL",
+			"value": "https://ek-preview-ne-serverless-gateway.azure-api.net/webhook/v2/6bbf0a2f-d941-4e48-8c3d-6cc852163dfe?sig=JdrXuoVb6rbjyXclV5WS5nS3azcGnzNG7CrhnFJ%252b3D0%253d"
+		}
+	]
+}
