@@ -13,4 +13,25 @@ Typically the Swagger UI definition looks similar to the example below:
 Unit4s REST APIs are using ODATA syntax to retrieve data. 
 You can find some useful information on ODATA in this link: https://docs.microsoft.com/en-us/dynamics-nav/using-filter-expressions-in-odata-uris
 
+There are a lot of operators and functions you can use to filter data through and REST API.
+Below you can see an overview:
+![REST operators and functions](https://user-images.githubusercontent.com/98328584/150995913-1943cbad-801a-4862-bace-f741f750d865.png)
+
+
+# Additional sources of information
+You can find more helpful sources of information on the links below:
+
+https://www.odata.org/documentation/odata-version-2-0/uri-conventions/ 
+
+https://docs.microsoft.com/en-us/dynamics-nav/using-filter-expressions-in-odata-uris
+
+https://www.odata.org/getting-started/
+
+https://www.odata.org/documentation/odata-version-2-0/uri-conventions/
+
+
+
+
+
+
 
