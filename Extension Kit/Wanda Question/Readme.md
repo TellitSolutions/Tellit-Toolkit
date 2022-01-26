@@ -10,6 +10,14 @@ Below you can see an example of the dialogue between the end user and Wanda in T
 ![Wanda communication](https://user-images.githubusercontent.com/98328584/150991795-9a4d406a-7f14-4143-bd98-4dbda34621f1.PNG)
 
 
+# Created By
+Dan Nylænder - Tellit Solutions - dan@tellitsolutions.no
+
+
+# Concepts Covered
+* Triggering a flow from PostMan using Webhook trigger
+* Using Wanda Question action type to initiate dialogue with end user
+
 
 # Actual usecase 
 
@@ -23,5 +31,4 @@ The exported flow can be found in the following location, you will need both JSO
 [Flow Definitions](https://github.com/TellitSolutions/Tellit-Toolkit/tree/main/Extension%20Kit/Wanda%20Question/FlowDefinition)
 
 
-# Created By
-Dan Nylænder - Tellit Solutions - dan@tellitsolutions.no
+
