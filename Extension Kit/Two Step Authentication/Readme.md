@@ -21,15 +21,18 @@ Step 2: Assign the given authentication token in the header-section when doing s
 Dan Nylænder - Tellit Solutions - dan@tellitsolutions.no
 
 
+
 # Concepts Covered
 * Triggering a flow from a Message Hub Event in ERPx
 * Two step authentication against an external API
+
 
 
 # Actual usecase 
 
 Tellit Solutions has developed a global solution in Extension Kit to do credit checks on both customers and suppliers in Unit4 ERP. 
 These solutions are compliant with both ERP7 and ERPx and are developed using Creditsafe APIs, which allows us to do credit checks on almost 400 million companies in over 160 countries.
+
 
 
 # Download Flows
