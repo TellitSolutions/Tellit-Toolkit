@@ -1,0 +1,205 @@
+{
+  "FlowId": "77f526ce-55a5-490f-9482-e9a6c3d56b9a",
+  "FlowType": "Customer",
+  "Version": 5,
+  "Description": "TE_MHE_TwoStepAuthentication_HTTP_v1.0",
+  "UserId": "73ef7749-9937-476b-b061-8dd62d4260f8\\dan.nylaender@u4ia.io",
+  "Trigger": {
+    "Type": "mh-events",
+    "Version": 1,
+    "Config": {
+      "Tenant": null,
+      "SourceSystem": "u4erp",
+      "MessageType": "DocumentMessage",
+      "Name": "supplier",
+      "Version": "2.0"
+    }
+  },
+  "Actions": [
+    {
+      "Type": "http-request",
+      "Version": 1,
+      "Label": "1. Get authentication token",
+      "Filter": [
+        {
+          "BodyPath": "{{ step0.Body.companyRegistrationNumber}}",
+          "Operation": 1,
+          "Value": ""
+        }
+      ],
+      "Condition": [],
+      "Input": {
+        "Name": "542c8a75-004b-41ce-adfe-eb2d06fb96ee",
+        "Properties": [
+          {
+            "Name": "AuthenticationType",
+            "Value": {
+              "Text": "None"
+            }
+          },
+          {
+            "Name": "Method",
+            "Value": {
+              "Text": "POST"
+            }
+          },
+          {
+            "Name": "Url",
+            "Value": {
+              "Text": "{{parameters.TE_CREDSAFE_URL}}/authenticate"
+            }
+          },
+          {
+            "Name": "ContentType",
+            "Value": {
+              "Text": "application/json"
+            }
+          },
+          {
+            "Name": "Content",
+            "Value": {
+              "Text": "{\"username\":\"{{parameters.TE_CREDSAFE_USERNAME}}\",\"password\":\"{{parameters.TE_CREDSAFE_PASSWORD}}\"}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "stop",
+      "Version": 1,
+      "Label": "2. Stop Execution if authentication failed",
+      "Filter": [],
+      "Condition": [
+        {
+          "BodyPath": "{{ step1.StatusCode }}",
+          "Operation": 3,
+          "Value": "200"
+        }
+      ],
+      "Input": {
+        "Name": "274fec02-e686-4549-91f3-292e89aeee89",
+        "Properties": [
+          {
+            "Name": "StopWith",
+            "Value": {
+              "Text": "Failure"
+            }
+          },
+          {
+            "Name": "Summary",
+            "Value": {
+              "Text": "Authentication with Creditsafe failed.\nPlease check that your username and password are correct.  \nPlease be aware that usernames and passwords are case sensitive. \nIf the problem persists, please contact your Creditsafe account manager."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "json-parse",
+      "Version": 2,
+      "Label": "3. Parse authentication token",
+      "Filter": [],
+      "Condition": [],
+      "Input": {
+        "Name": "4cbf3882-d3a0-4b2c-af95-f8e838bd9fe3",
+        "Properties": [
+          {
+            "Name": "SchemaSource",
+            "Value": {
+              "Text": "Content"
+            }
+          },
+          {
+            "Name": "Schema",
+            "Value": {
+              "Text": "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\": \"Example\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"token\": {\n      \"type\": \"string\"\n    }\n  }\n}"
+            }
+          },
+          {
+            "Name": "SourceJson",
+            "Value": {
+              "Text": "{{step1.Response}}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "http-request",
+      "Version": 1,
+      "Label": "4. Get company information",
+      "Filter": [],
+      "Condition": [],
+      "Input": {
+        "Name": "22efb35a-5771-4246-aa17-45b44829a954",
+        "Properties": [
+          {
+            "Name": "AuthenticationType",
+            "Value": {
+              "Text": "None"
+            }
+          },
+          {
+            "Name": "Method",
+            "Value": {
+              "Text": "GET"
+            }
+          },
+          {
+            "Name": "Url",
+            "Value": {
+              "Text": "{{parameters.TE_CREDSAFE_URL}}/companies?countries={{step0.Body.countryCode}}&regNo={{step0.Body.companyRegistrationNumber}}"
+            }
+          },
+          {
+            "Name": "Headers",
+            "Value": {
+              "Dictionary": {
+                "Authorization": {
+                  "Text": "{{step3.ParsedContent.token}}"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "stop",
+      "Version": 1,
+      "Filter": [],
+      "Condition": [],
+      "Input": {
+        "Name": "8a33619f-c656-4783-89f3-b86beee6d77a",
+        "Properties": [
+          {
+            "Name": "StopWith",
+            "Value": {
+              "Text": "Success"
+            }
+          },
+          {
+            "Name": "Summary",
+            "Value": {
+              "Text": "Example ends."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "IsParked": false,
+  "Status": "Active",
+  "Configuration": {
+    "IsSensitive": false
+  },
+  "LastChangedBy": "73ef7749-9937-476b-b061-8dd62d4260f8\\dan.nylaender@u4ia.io",
+  "LastChangedAt": "2022-01-26T07:47:52Z",
+  "LastAvailableHistoryAt": "0001-01-01T00:00:00Z",
+  "FeatureFlags": [
+    {
+      "Name": "templatingV2",
+      "IsEnabled": true
+    }
+  ]
+}
