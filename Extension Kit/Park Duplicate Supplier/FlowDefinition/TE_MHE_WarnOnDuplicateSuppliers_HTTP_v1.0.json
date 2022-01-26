@@ -1,0 +1,414 @@
+{
+  "FlowId": "2f49e03d-0471-48f5-8113-09b85bcfa7cd",
+  "FlowType": "Customer",
+  "Version": 3,
+  "Description": "TE_MHE_WarnOnDuplicateSuppliers_HTTP_v1.0",
+  "UserId": "5b3475c1-609a-4b14-a62a-974f248b6505\\dan@tellitsolutions.no",
+  "Trigger": {
+    "Type": "mh-events",
+    "Version": 1,
+    "Config": {
+      "Tenant": null,
+      "SourceSystem": "u4bw",
+      "MessageType": "DocumentMessage",
+      "Name": "supplier",
+      "Version": "1.0"
+    }
+  },
+  "Actions": [
+    {
+      "Type": "u4id-resolver",
+      "Version": 1,
+      "Filter": [
+        {
+          "BodyPath": "step0:Body.companyId",
+          "Operation": 2,
+          "Value": "EN"
+        },
+        {
+          "BodyPath": "step0:Body.payment.iban",
+          "Operation": 1,
+          "Value": ""
+        },
+        {
+          "BodyPath": "step0:Body.status",
+          "Operation": 2,
+          "Value": "N"
+        }
+      ],
+      "Condition": [],
+      "Input": {
+        "Name": "4909220f-97bb-413d-9184-6f970e8bd986",
+        "Properties": [
+          {
+            "Name": "TenantId",
+            "Value": {
+              "Text": null
+            }
+          },
+          {
+            "Name": "Email",
+            "Value": {
+              "Text": "dan@tellitsolutions.no"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "http-request",
+      "Version": 1,
+      "Label": "2. Check for duplicate suppliers",
+      "Filter": [],
+      "Condition": [],
+      "Input": {
+        "Name": "1367f24a-af99-4310-ad85-bfa067a19ff3",
+        "Properties": [
+          {
+            "Name": "AuthenticationType",
+            "Value": {
+              "Text": "Basic"
+            }
+          },
+          {
+            "Name": "Username",
+            "Value": {
+              "Text": "sysenlong"
+            }
+          },
+          {
+            "Name": "Password",
+            "Value": {
+              "Text": "@@actionParameter001"
+            }
+          },
+          {
+            "Name": "Method",
+            "Value": {
+              "Text": "GET"
+            }
+          },
+          {
+            "Name": "Url",
+            "Value": {
+              "Text": "https://u4-ek-workshop.u4pp.com/Unit4ERP-web-api/v1/objects/suppliers?companyId=EN&filter=supplierId ne '{{step0.Body.supplierId}}' and companyRegistrationNumber eq '{{step0.Body.companyRegistrationNumber}}' and status eq 'N'"
+            }
+          },
+          {
+            "Name": "ContentType",
+            "Value": {
+              "Text": "application/json"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "for-each",
+      "Version": 1,
+      "Filter": [],
+      "Condition": [
+        {
+          "BodyPath": "step2:StatusCode",
+          "Operation": 2,
+          "Value": "200"
+        }
+      ],
+      "Input": {
+        "Name": "f22a92a6-97dc-4b60-998d-f5aaa69ca390",
+        "Properties": [
+          {
+            "Name": "Items",
+            "Value": {
+              "Text": "{{step2.Response}}"
+            }
+          },
+          {
+            "Name": "RawProperty__Actions",
+            "Items": [
+              {
+                "Type": "da-question",
+                "Version": 1,
+                "Label": "Substep 1 DAQ: Park supplier?",
+                "Filter": [],
+                "Condition": [],
+                "Input": {
+                  "Name": "4d37be69-5deb-4f19-8a85-8fbb52affc1f",
+                  "Properties": [
+                    {
+                      "Name": "Unit4Id",
+                      "Value": {
+                        "Text": "{{step1.Unit4Id}}"
+                      }
+                    },
+                    {
+                      "Name": "Question",
+                      "Value": {
+                        "Text": "Hi {{step1.Name}}. The supplier **{{step0:Body.supplierId}}** is duplicate based on entered company registration number **{{step0.Body.companyRegistrationNumber}}**. Do you want me to park this supplier?",
+                        "Parameters": {
+                          "step0:Body.supplierId": {
+                            "BodyPath": "step0:$.Body.supplierId"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "Name": "ExpectedDataType",
+                      "Value": {
+                        "Text": "Bool"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "Type": "http-request",
+                "Version": 1,
+                "Label": "Substep 2 HTTP: Park supplier",
+                "Filter": [],
+                "Condition": [
+                  {
+                    "BodyPath": "substep1.Status",
+                    "Operation": 2,
+                    "Value": "completed"
+                  },
+                  {
+                    "BodyPath": "substep1.Answer",
+                    "Operation": 2,
+                    "Value": "True"
+                  }
+                ],
+                "Input": {
+                  "Name": "43b10f2a-3dc6-4ae8-ac72-d8a26cc58808",
+                  "Properties": [
+                    {
+                      "Name": "AuthenticationType",
+                      "Value": {
+                        "Text": "Basic"
+                      }
+                    },
+                    {
+                      "Name": "Username",
+                      "Value": {
+                        "Text": "sysenlong"
+                      }
+                    },
+                    {
+                      "Name": "Password",
+                      "Value": {
+                        "Text": "@@actionParameter002"
+                      }
+                    },
+                    {
+                      "Name": "Method",
+                      "Value": {
+                        "Text": "PATCH"
+                      }
+                    },
+                    {
+                      "Name": "Url",
+                      "Value": {
+                        "Text": "https://u4-ek-workshop.u4pp.com/Unit4ERP-web-api/v1/suppliers/{{step0.Body.supplierId}}?companyId=EN"
+                      }
+                    },
+                    {
+                      "Name": "ContentType",
+                      "Value": {
+                        "Text": "application/json-patch+json"
+                      }
+                    },
+                    {
+                      "Name": "Content",
+                      "Value": {
+                        "Text": "[{\"path\":\"status\",\"op\":\"Replace\",\"value\":\"P\"}]"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "Type": "da-push-text",
+                "Version": 1,
+                "Label": "Substep 3 DAPT: Supplier parked",
+                "Filter": [],
+                "Condition": [
+                  {
+                    "BodyPath": "substep1.Answer",
+                    "Operation": 2,
+                    "Value": "True"
+                  },
+                  {
+                    "BodyPath": "substep1.Status",
+                    "Operation": 2,
+                    "Value": "completed"
+                  }
+                ],
+                "Input": {
+                  "Name": "6f1524e5-4e10-4da9-a70c-5567c046967e",
+                  "Properties": [
+                    {
+                      "Name": "Unit4Id",
+                      "Value": {
+                        "Text": "{{step1.Unit4Id}}"
+                      }
+                    },
+                    {
+                      "Name": "TenantId",
+                      "Value": {
+                        "Text": null
+                      }
+                    },
+                    {
+                      "Name": "FullName",
+                      "Value": {
+                        "Text": "{{step1.Name}}"
+                      }
+                    },
+                    {
+                      "Name": "NotificationText",
+                      "Value": {
+                        "Text": "Thank you.\n\nI have parked supplier **{{step0.Body.supplierId}}** for you.\nPlease use this **[Link](https://u4-ek-workshop.u4pp.com/Unit4ERP/Default.aspx?accessId=AP484&client={{step0.Body.companyId}}&apar_id={{step0.Body.supplierId}})**, to view the supplier.\n\nBest regards,\nWanda"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "Type": "da-question",
+                "Version": 1,
+                "Label": "Substep 4 DAQ: Open link to edit?",
+                "Filter": [],
+                "Condition": [
+                  {
+                    "BodyPath": "substep1.Status",
+                    "Operation": 2,
+                    "Value": "completed"
+                  },
+                  {
+                    "BodyPath": "substep1.Answer",
+                    "Operation": 2,
+                    "Value": "False"
+                  }
+                ],
+                "Input": {
+                  "Name": "853ef127-a055-41db-a9ed-912b7b574fae",
+                  "Properties": [
+                    {
+                      "Name": "Unit4Id",
+                      "Value": {
+                        "Text": "{{step1.Unit4Id}}"
+                      }
+                    },
+                    {
+                      "Name": "Question",
+                      "Value": {
+                        "Text": "OK, thank you. Do you want to edit supplier **{{step0.Body.supplierId}}** instead? I can provide you with a direct link."
+                      }
+                    },
+                    {
+                      "Name": "ExpectedDataType",
+                      "Value": {
+                        "Text": "Bool"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "Type": "da-push-text",
+                "Version": 1,
+                "Label": "Substep 5: DAPT Provide link",
+                "Filter": [
+                  {
+                    "BodyPath": "substep1.Answer",
+                    "Operation": 2,
+                    "Value": "False"
+                  }
+                ],
+                "Condition": [
+                  {
+                    "BodyPath": "substep4.Status",
+                    "Operation": 2,
+                    "Value": "completed"
+                  },
+                  {
+                    "BodyPath": "substep4.Answer",
+                    "Operation": 2,
+                    "Value": "True"
+                  }
+                ],
+                "Input": {
+                  "Name": "5f8c9148-f341-443c-8657-4b48c7188cd8",
+                  "Properties": [
+                    {
+                      "Name": "Unit4Id",
+                      "Value": {
+                        "Text": "{{step1.Unit4Id}}"
+                      }
+                    },
+                    {
+                      "Name": "TenantId",
+                      "Value": {
+                        "Text": null
+                      }
+                    },
+                    {
+                      "Name": "FullName",
+                      "Value": {
+                        "Text": "{{step1.Name}}"
+                      }
+                    },
+                    {
+                      "Name": "NotificationText",
+                      "Value": {
+                        "Text": "Thank you.\n\nPlease use this **[Link](https://u4-ek-workshop.u4pp.com/Unit4ERP/Default.aspx?accessId=AP484&client={{step0.Body.companyId}}&apar_id={{step0.Body.supplierId}})**, to edit supplier **{{step0.Body.supplierId}}** directly.\n\nBest regards,\nWanda"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "Name": "SubActions",
+            "Value": {
+              "Text": "[{\"Type\":\"da-question\",\"Version\":1,\"Label\":\"Substep 1 DAQ: Park supplier?\",\"Filter\":[],\"Condition\":[],\"Input\":{\"Name\":\"4d37be69-5deb-4f19-8a85-8fbb52affc1f\",\"Properties\":[{\"Name\":\"Unit4Id\",\"Value\":{\"Text\":\"{{step1.Unit4Id}}\"}},{\"Name\":\"Question\",\"Value\":{\"Text\":\"Hi {{step1.Name}}. The supplier **{{step0:Body.supplierId}}** is duplicate based on entered company registration number **{{step0.Body.companyRegistrationNumber}}**. Do you want me to park this supplier?\",\"Parameters\":{\"step0:Body.supplierId\":{\"BodyPath\":\"step0:$.Body.supplierId\"}}}},{\"Name\":\"ExpectedDataType\",\"Value\":{\"Text\":\"Bool\"}}]}},{\"Type\":\"http-request\",\"Version\":1,\"Label\":\"Substep 2 HTTP: Park supplier\",\"Filter\":[],\"Condition\":[{\"BodyPath\":\"substep1.Status\",\"Operation\":2,\"Value\":\"completed\"},{\"BodyPath\":\"substep1.Answer\",\"Operation\":2,\"Value\":\"True\"}],\"Input\":{\"Name\":\"43b10f2a-3dc6-4ae8-ac72-d8a26cc58808\",\"Properties\":[{\"Name\":\"AuthenticationType\",\"Value\":{\"Text\":\"Basic\"}},{\"Name\":\"Username\",\"Value\":{\"Text\":\"sysenlong\"}},{\"Name\":\"Password\",\"Value\":{\"Text\":\"@@actionParameter002\"}},{\"Name\":\"Method\",\"Value\":{\"Text\":\"PATCH\"}},{\"Name\":\"Url\",\"Value\":{\"Text\":\"https://u4-ek-workshop.u4pp.com/Unit4ERP-web-api/v1/suppliers/{{step0.Body.supplierId}}?companyId=EN\"}},{\"Name\":\"ContentType\",\"Value\":{\"Text\":\"application/json-patch+json\"}},{\"Name\":\"Content\",\"Value\":{\"Text\":\"[{\\\"path\\\":\\\"status\\\",\\\"op\\\":\\\"Replace\\\",\\\"value\\\":\\\"P\\\"}]\"}}]}},{\"Type\":\"da-push-text\",\"Version\":1,\"Label\":\"Substep 3 DAPT: Supplier parked\",\"Filter\":[],\"Condition\":[{\"BodyPath\":\"substep1.Answer\",\"Operation\":2,\"Value\":\"True\"},{\"BodyPath\":\"substep1.Status\",\"Operation\":2,\"Value\":\"completed\"}],\"Input\":{\"Name\":\"6f1524e5-4e10-4da9-a70c-5567c046967e\",\"Properties\":[{\"Name\":\"Unit4Id\",\"Value\":{\"Text\":\"{{step1.Unit4Id}}\"}},{\"Name\":\"TenantId\",\"Value\":{\"Text\":null}},{\"Name\":\"FullName\",\"Value\":{\"Text\":\"{{step1.Name}}\"}},{\"Name\":\"NotificationText\",\"Value\":{\"Text\":\"Thank you.\\n\\nI have parked supplier **{{step0.Body.supplierId}}** for you.\\nPlease use this **[Link](https://u4-ek-workshop.u4pp.com/Unit4ERP/Default.aspx?accessId=AP484&client={{step0.Body.companyId}}&apar_id={{step0.Body.supplierId}})**, to view the supplier.\\n\\nBest regards,\\nWanda\"}}]}},{\"Type\":\"da-question\",\"Version\":1,\"Label\":\"Substep 4 DAQ: Open link to edit?\",\"Filter\":[],\"Condition\":[{\"BodyPath\":\"substep1.Status\",\"Operation\":2,\"Value\":\"completed\"},{\"BodyPath\":\"substep1.Answer\",\"Operation\":2,\"Value\":\"False\"}],\"Input\":{\"Name\":\"853ef127-a055-41db-a9ed-912b7b574fae\",\"Properties\":[{\"Name\":\"Unit4Id\",\"Value\":{\"Text\":\"{{step1.Unit4Id}}\"}},{\"Name\":\"Question\",\"Value\":{\"Text\":\"OK, thank you. Do you want to edit supplier **{{step0.Body.supplierId}}** instead? I can provide you with a direct link.\"}},{\"Name\":\"ExpectedDataType\",\"Value\":{\"Text\":\"Bool\"}}]}},{\"Type\":\"da-push-text\",\"Version\":1,\"Label\":\"Substep 5: DAPT Provide link\",\"Filter\":[{\"BodyPath\":\"substep1.Answer\",\"Operation\":2,\"Value\":\"False\"}],\"Condition\":[{\"BodyPath\":\"substep4.Status\",\"Operation\":2,\"Value\":\"completed\"},{\"BodyPath\":\"substep4.Answer\",\"Operation\":2,\"Value\":\"True\"}],\"Input\":{\"Name\":\"5f8c9148-f341-443c-8657-4b48c7188cd8\",\"Properties\":[{\"Name\":\"Unit4Id\",\"Value\":{\"Text\":\"{{step1.Unit4Id}}\"}},{\"Name\":\"TenantId\",\"Value\":{\"Text\":null}},{\"Name\":\"FullName\",\"Value\":{\"Text\":\"{{step1.Name}}\"}},{\"Name\":\"NotificationText\",\"Value\":{\"Text\":\"Thank you.\\n\\nPlease use this **[Link](https://u4-ek-workshop.u4pp.com/Unit4ERP/Default.aspx?accessId=AP484&client={{step0.Body.companyId}}&apar_id={{step0.Body.supplierId}})**, to edit supplier **{{step0.Body.supplierId}}** directly.\\n\\nBest regards,\\nWanda\"}}]}}]"
+            },
+            "SkipResolvingReferences": true
+          }
+        ]
+      }
+    },
+    {
+      "Type": "stop",
+      "Version": 1,
+      "Filter": [],
+      "Condition": [],
+      "Input": {
+        "Name": "71d50579-3c6c-47fb-9ffc-d3bdb85d7b62",
+        "Properties": [
+          {
+            "Name": "StopWith",
+            "Value": {
+              "Text": "Success"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "IsParked": false,
+  "Status": "Active",
+  "Configuration": {
+    "IsSensitive": false
+  },
+  "LastChangedBy": "5b3475c1-609a-4b14-a62a-974f248b6505\\dan@tellitsolutions.no",
+  "LastChangedAt": "2022-01-26T07:19:57Z",
+  "LastAvailableHistoryAt": "0001-01-01T00:00:00Z",
+  "FeatureFlags": [
+    {
+      "Name": "templatingV2",
+      "IsEnabled": true
+    }
+  ]
+}
