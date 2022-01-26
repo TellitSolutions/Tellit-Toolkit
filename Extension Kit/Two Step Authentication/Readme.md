@@ -6,6 +6,14 @@ This examples shows how this can be implemented in Extension Kit.
 This example uses the Creditsafe APIs, and you would need a test account with Creditsafe to run this example.
 However, the process would be very similar for any 3rd party API requiring this method of authentication.
 
+The "Two-step authentication" process works in the following way:
+Step 1: Get the authentication token based on provided username and password:
+![Retrieving Auth Token](https://user-images.githubusercontent.com/98328584/151136925-a83b7abe-7120-4290-b556-875d424a00a4.PNG)
+
+Step 2: Assign the given authentication token in the header-section when doing subsequent API-calls to the 3rd party vendor:
+![Sending auth token in header](https://user-images.githubusercontent.com/98328584/151137073-32eba976-80e3-4351-84a7-907d90581227.PNG)
+
+
 
 # Created By
 Dan Nylænder - Tellit Solutions - dan@tellitsolutions.no
