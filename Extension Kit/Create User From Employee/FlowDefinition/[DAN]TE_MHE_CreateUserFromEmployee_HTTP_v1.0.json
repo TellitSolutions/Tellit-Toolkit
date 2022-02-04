@@ -1,0 +1,362 @@
+{
+  "FlowId": "067a701e-9d44-4cae-a7d9-bc33872c1b3b",
+  "FlowType": "Customer",
+  "Version": 32,
+  "Description": "[DAN]TE_MHE_CreateUserFromEmployee_HTTP_v1.0",
+  "UserId": "5b3475c1-609a-4b14-a62a-974f248b6505\\dan@tellitsolutions.no",
+  "Trigger": {
+    "Type": "mh-events",
+    "Version": 1,
+    "Config": {
+      "Tenant": null,
+      "SourceSystem": "u4bw",
+      "MessageType": "DocumentMessage",
+      "Name": "employee",
+      "Version": "1.0"
+    }
+  },
+  "Actions": [
+    {
+      "Type": "http-request",
+      "Version": 1,
+      "Label": "1. Get template user",
+      "Filter": [
+        {
+          "BodyPath": "{{ step0.Properties.OperationType}}",
+          "Operation": 2,
+          "Value": "Added"
+        }
+      ],
+      "Condition": [],
+      "Input": {
+        "Name": "81947b47-ddd7-4b4a-a617-153fbc480cc0",
+        "Properties": [
+          {
+            "Name": "AuthenticationType",
+            "Value": {
+              "Text": "Basic"
+            }
+          },
+          {
+            "Name": "Username",
+            "Value": {
+              "Text": "sysenlong"
+            }
+          },
+          {
+            "Name": "Password",
+            "Value": {
+              "Text": "@@actionParameter000"
+            }
+          },
+          {
+            "Name": "Method",
+            "Value": {
+              "Text": "GET"
+            }
+          },
+          {
+            "Name": "Url",
+            "Value": {
+              "Text": "{{parameters.api_url}}/v1/users/{{parameters.TE_TEMPUSERID}}?companyId=EN"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "json-parse",
+      "Version": 2,
+      "Label": "2. Parse template user",
+      "Filter": [
+        {
+          "BodyPath": "{{ step1.StatusCode }}",
+          "Operation": 2,
+          "Value": "200"
+        }
+      ],
+      "Condition": [],
+      "Input": {
+        "Name": "fc6e3d9b-584e-4735-95ed-202cfb54b8a4",
+        "Properties": [
+          {
+            "Name": "SchemaSource",
+            "Value": {
+              "Text": "Content"
+            }
+          },
+          {
+            "Name": "Schema",
+            "Value": {
+              "Text": "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\": \"Example\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"alertMedia\": {\n      \"type\": \"string\"\n    },\n    \"defaultLogonCompany\": {\n      \"type\": \"string\"\n    },\n    \"description\": {\n      \"type\": \"string\"\n    },\n    \"languageCode\": {\n      \"type\": \"string\"\n    },\n    \"printer\": {\n      \"type\": \"string\"\n    },\n    \"userId\": {\n      \"type\": \"string\"\n    },\n    \"userName\": {\n      \"type\": \"string\"\n    },\n    \"security\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"domainUser\": {\n          \"type\": \"string\"\n        },\n        \"unit4Id\": {\n          \"type\": \"string\"\n        },\n        \"disabledUntil\": {\n          \"type\": \"string\"\n        },\n        \"passwordUpdated\": {\n          \"type\": \"string\"\n        },\n        \"passwordExpiryDate\": {\n          \"type\": \"string\"\n        }\n      }\n    },\n    \"ldap\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"ldapId\": {\n          \"type\": \"string\"\n        },\n        \"ldapType\": {\n          \"type\": \"string\"\n        }\n      }\n    },\n    \"lastUpdated\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"updatedAt\": {\n          \"type\": \"string\"\n        },\n        \"updatedBy\": {\n          \"type\": \"string\"\n        }\n      }\n    },\n    \"userStatus\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"dateFrom\": {\n          \"type\": \"string\"\n        },\n        \"dateTo\": {\n          \"type\": \"string\"\n        },\n        \"status\": {\n          \"type\": \"string\"\n        }\n      }\n    },\n    \"roleAndCompany\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"companyId\": {\n            \"type\": \"string\"\n          },\n          \"personId\": {\n            \"type\": \"string\"\n          },\n          \"resourceConnectionUpdated\": {\n            \"type\": \"string\"\n          },\n          \"resourceConnectionUpdatedBy\": {\n            \"type\": \"string\"\n          },\n          \"roleConnectionValidFrom\": {\n            \"type\": \"string\"\n          },\n          \"roleConnectionValidTo\": {\n            \"type\": \"string\"\n          },\n          \"roleConnectionUpdatedAt\": {\n            \"type\": \"string\"\n          },\n          \"roleConnectionStatus\": {\n            \"type\": \"string\"\n          },\n          \"roleConnectionUpdatedBy\": {\n            \"type\": \"string\"\n          },\n          \"roleId\": {\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"companyId\",\n          \"personId\",\n          \"resourceConnectionUpdated\",\n          \"resourceConnectionUpdatedBy\",\n          \"roleConnectionValidFrom\",\n          \"roleConnectionValidTo\",\n          \"roleConnectionUpdatedAt\",\n          \"roleConnectionStatus\",\n          \"roleConnectionUpdatedBy\",\n          \"roleId\"\n        ]\n      }\n    },\n    \"access\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"reportPriority\": {\n          \"type\": \"number\"\n        },\n        \"accessFrom\": {\n          \"type\": \"number\"\n        },\n        \"accessTo\": {\n          \"type\": \"number\"\n        }\n      }\n    },\n    \"usage\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"isAdministrator\": {\n          \"type\": \"boolean\"\n        },\n        \"availableInMenuAccess\": {\n          \"type\": \"boolean\"\n        },\n        \"isEnabledForWorkflowProcess\": {\n          \"type\": \"boolean\"\n        }\n      }\n    },\n    \"contactPoints\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"additionalContactInfo\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"contactPerson\": {\n                \"type\": \"string\"\n              },\n              \"contactPosition\": {\n                \"type\": \"string\"\n              },\n              \"eMail\": {\n                \"type\": \"string\"\n              },\n              \"eMailCc\": {\n                \"type\": \"string\"\n              },\n              \"gtin\": {\n                \"type\": \"string\"\n              },\n              \"url\": {\n                \"type\": \"string\"\n              }\n            }\n          },\n          \"address\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"countryCode\": {\n                \"type\": \"string\"\n              },\n              \"place\": {\n                \"type\": \"string\"\n              },\n              \"postcode\": {\n                \"type\": \"string\"\n              },\n              \"province\": {\n                \"type\": \"string\"\n              },\n              \"streetAddress\": {\n                \"type\": \"string\"\n              }\n            }\n          },\n          \"contactPointType\": {\n            \"type\": \"string\"\n          },\n          \"lastUpdated\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"updatedAt\": {\n                \"type\": \"string\"\n              },\n              \"updatedBy\": {\n                \"type\": \"string\"\n              }\n            }\n          },\n          \"phoneNumbers\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"telephone1\": {\n                \"type\": \"string\"\n              },\n              \"telephone2\": {\n                \"type\": \"string\"\n              },\n              \"telephone3\": {\n                \"type\": \"string\"\n              },\n              \"telephone4\": {\n                \"type\": \"string\"\n              },\n              \"telephone5\": {\n                \"type\": \"string\"\n              },\n              \"telephone6\": {\n                \"type\": \"string\"\n              },\n              \"telephone7\": {\n                \"type\": \"string\"\n              }\n            }\n          },\n          \"sortOrder\": {\n            \"type\": \"number\"\n          }\n        }\n      }\n    },\n    \"relatedValues\": {\n      \"type\": \"array\",\n      \"items\": {}\n    }\n  }\n}"
+            }
+          },
+          {
+            "Name": "SourceJson",
+            "Value": {
+              "Text": "{{step1.Response}}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "http-request",
+      "Version": 1,
+      "Label": "3. Check if user exsist",
+      "Filter": [
+        {
+          "BodyPath": "{{ step1.StatusCode }}",
+          "Operation": 2,
+          "Value": "200"
+        }
+      ],
+      "Condition": [],
+      "Input": {
+        "Name": "f570760c-c4fb-4936-9779-ecfc3c9b14be",
+        "Properties": [
+          {
+            "Name": "AuthenticationType",
+            "Value": {
+              "Text": "Basic"
+            }
+          },
+          {
+            "Name": "Username",
+            "Value": {
+              "Text": "sysenlong"
+            }
+          },
+          {
+            "Name": "Password",
+            "Value": {
+              "Text": "@@actionParameter001"
+            }
+          },
+          {
+            "Name": "Method",
+            "Value": {
+              "Text": "GET"
+            }
+          },
+          {
+            "Name": "Url",
+            "Value": {
+              "Text": "{{parameters.api_url}}/v1/users/{{step0.Body.nameInformation.aliasName}}?companyId={{step0.Body.companyId}}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "email",
+      "Version": 1,
+      "Label": "4.Send Email if user exist",
+      "Filter": [],
+      "Condition": [
+        {
+          "BodyPath": "{{ step3.StatusCode }}",
+          "Operation": 2,
+          "Value": "200"
+        }
+      ],
+      "Input": {
+        "Name": "73eed702-3a54-4739-ad69-4736299a512d",
+        "Properties": [
+          {
+            "Name": "To",
+            "Value": {
+              "Text": "dan@tellitsolutions.no"
+            }
+          },
+          {
+            "Name": "Subject",
+            "Value": {
+              "Text": "Extension kit - Could not create user"
+            }
+          },
+          {
+            "Name": "BodyFormat",
+            "Value": {
+              "Text": "Text"
+            }
+          },
+          {
+            "Name": "Body",
+            "Value": {
+              "Text": "Hi System-Admin, a user with userId {{step0.Body.nameInformation.aliasName}}  already exsists, please create the user manually.\n\nBest regards,\nWanda"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "http-request",
+      "Version": 1,
+      "Label": "5. Create user",
+      "Filter": [],
+      "Condition": [
+        {
+          "BodyPath": "{{ step3.StatusCode }}",
+          "Operation": 3,
+          "Value": "200"
+        }
+      ],
+      "Input": {
+        "Name": "0e5703af-1ec4-497e-85cf-df9333b68bd4",
+        "Properties": [
+          {
+            "Name": "AuthenticationType",
+            "Value": {
+              "Text": "Basic"
+            }
+          },
+          {
+            "Name": "Username",
+            "Value": {
+              "Text": "sysenlong"
+            }
+          },
+          {
+            "Name": "Password",
+            "Value": {
+              "Text": "@@actionParameter002"
+            }
+          },
+          {
+            "Name": "IdsUrl",
+            "Value": {
+              "Text": "{{parameters.ids_url}}"
+            }
+          },
+          {
+            "Name": "Client",
+            "Value": {
+              "Text": "{{parameters.ids_clientid}}"
+            }
+          },
+          {
+            "Name": "ClientSecret",
+            "Value": {
+              "Text": "@@actionParameter003"
+            }
+          },
+          {
+            "Name": "RequestedScope",
+            "Value": {
+              "Text": "{{parameters.ids_scope}}"
+            }
+          },
+          {
+            "Name": "Method",
+            "Value": {
+              "Text": "POST"
+            }
+          },
+          {
+            "Name": "Url",
+            "Value": {
+              "Text": "{{parameters.api_url}}/v1/users"
+            }
+          },
+          {
+            "Name": "ContentType",
+            "Value": {
+              "Text": "application/json"
+            }
+          },
+          {
+            "Name": "Content",
+            "Value": {
+              "Text": "{\n  \"alertMedia\": \"{{step2.ParsedContent.alertMedia}}\",\n  \"defaultLogonCompany\": \"{{step0.Body.companyId}}\",\n  \"description\": \"{{step0.Body.personName}}\",\n  \"languageCode\": \"{{step0.Body.languageCode}}\",\n  \"printer\": \"{{step2.ParsedContent.printer}}\",\n  \"userId\": \"{{step0.Body.nameInformation.aliasName}}\",\n  \"userName\": \"{{step0.Body.nameInformation.aliasName}}\",\n  \"security\": {\n    \"domainUser\": \"\",\n    \"unit4Id\": \"{{step0.Body.contactPoints[0].additionalContactInfo.eMail}}\",\n    \"disabledUntil\": \"1900-01-01T00:00:00.000\",\n    \"passwordExpiryDate\": \"2099-12-31T00:00:00.000\"\n  },\n  \"userStatus\": {\n    \"dateFrom\": \"{{step0.Body.lastUpdated.updatedAt}}\",\n    \"dateTo\": \"2099-12-31T00:00:00\",\n    \"status\": \"N\"\n  },\n  \"roleAndCompany\": [\n    {\n      \"companyId\": \"{{step0.Body.companyId}}\",\n      \"personId\": \"{{step0.Body.personId}}\",\n      \"roleConnectionValidFrom\": \"1900-01-02T00:00:00\",\n      \"roleConnectionValidTo\": \"2099-12-31T00:00:00\",\n      \"roleConnectionStatus\": \"N\",\n      \"roleId\": \"SYSTEM\"\n    }\n  ],\n  \"access\": {\n    \"reportPriority\": {{step2.ParsedContent.access.reportPriority}},\n    \"accessFrom\": {{step2.ParsedContent.access.accessFrom}},\n    \"accessTo\": {{step2.ParsedContent.access.accessTo}}\n  },\n  \"usage\": {\n    \"isAdministrator\": {{step2.ParsedContent.usage.isAdministrator}},\n    \"availableInMenuAccess\": {{step2.ParsedContent.usage.availableInMenuAccess}},\n    \"isEnabledForWorkflowProcess\": {{step2.ParsedContent.usage.isEnabledForWorkflowProcess}}\n  },\n  \"contactPoints\": [\n    {\n      \"additionalContactInfo\": {\n        \"eMail\": \"{{step0.Body.contactPoints[0].additionalContactInfo.eMail}}\"\n      },\n      \"address\": {\n        \"countryCode\": \"{{step0.Body.contactPoints[0].address.countryCode}}\"\n      },\n      \"contactPointType\": \"1\",\n      \"sortOrder\": 1\n    }\n  ]\n}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "stop",
+      "Version": 1,
+      "Label": "6. Stop Execution (failure)",
+      "Filter": [],
+      "Condition": [
+        {
+          "BodyPath": "{{ step3.StatusCode }}",
+          "Operation": 3,
+          "Value": "200"
+        },
+        {
+          "BodyPath": "{{ step5.StatusCode }}",
+          "Operation": 3,
+          "Value": "201"
+        }
+      ],
+      "Input": {
+        "Name": "9fbae50d-87ae-4bdb-9dec-8be929e6d678",
+        "Properties": [
+          {
+            "Name": "StopWith",
+            "Value": {
+              "Text": "Failure"
+            }
+          },
+          {
+            "Name": "Summary",
+            "Value": {
+              "Text": "Hi, an unexpected error occoured when creating new user with UserId {{step0.Body.nameInformation.aliasName}}\n\nBest regards,\nWanda"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "stop",
+      "Version": 1,
+      "Label": "6. Stop Execution (success)",
+      "Filter": [],
+      "Condition": [
+        {
+          "BodyPath": "{{ step4.Succeeded }}",
+          "Operation": 2,
+          "Value": "True"
+        },
+        {
+          "BodyPath": "{{ step5.StatusCode }}",
+          "Operation": 2,
+          "Value": "201"
+        }
+      ],
+      "Input": {
+        "Name": "b9d2b67c-9b70-48a5-977a-c29df30d241b",
+        "Properties": [
+          {
+            "Name": "StopWith",
+            "Value": {
+              "Text": "Success"
+            }
+          },
+          {
+            "Name": "Summary",
+            "Value": {
+              "Text": "UserId {{step5.Response.userId}} was created based on new employee {{step1.ParsedContent.personId}}\nin company {{step1.PasedContent.companyId}} ."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "IsParked": false,
+  "Status": "Active",
+  "Configuration": {
+    "IsSensitive": false
+  },
+  "LastChangedBy": "5b3475c1-609a-4b14-a62a-974f248b6505\\dan@tellitsolutions.no",
+  "LastChangedAt": "2022-02-04T14:07:14Z",
+  "LastAvailableHistoryAt": "0001-01-01T00:00:00Z",
+  "FeatureFlags": [
+    {
+      "Name": "templatingV2",
+      "IsEnabled": true
+    }
+  ]
+}
