@@ -92,9 +92,13 @@ Below you can see an overview:
 You can find more helpful sources of information on the links below:
 
 https://www.odata.org/documentation/odata-version-2-0/uri-conventions/ 
+
 https://docs.microsoft.com/en-us/dynamics-nav/using-filter-expressions-in-odata-uris
+
 https://www.odata.org/getting-started/
+
 https://www.odata.org/documentation/odata-version-2-0/uri-conventions/
+
 
 
 
