@@ -2,7 +2,7 @@
   "FlowId": "067a701e-9d44-4cae-a7d9-bc33872c1b3b",
   "FlowType": "Customer",
   "Version": 32,
-  "Description": "[DAN]TE_MHE_CreateUserFromEmployee_HTTP_v1.0",
+  "Description": "TE_MHE_CreateUserFromEmployee_HTTP_v1.0",
   "UserId": "5b3475c1-609a-4b14-a62a-974f248b6505\\dan@tellitsolutions.no",
   "Trigger": {
     "Type": "mh-events",
