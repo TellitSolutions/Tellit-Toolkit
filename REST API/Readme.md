@@ -72,6 +72,12 @@ These business objects are the same objects that are used for reporting in the I
 If the external system is only to have read access to data, then it is recommended to only check the checkbox for R / Read.
 ![image](https://user-images.githubusercontent.com/98328584/152527310-e9c6d7e9-896e-4bc4-8283-5117da54f1d9.png)
 
+When access are granted, you must do an application recycle or run iisreset to clear the cache.
+Alternatively, you can delete the cache via REST API calls from eg PostMan. This can only be done by an API-user with the SUPER role:
+![image](https://user-images.githubusercontent.com/98328584/152527853-0c964230-e488-4578-adbd-aa5bf28f7e62.png)
+
+
+
 
 # ODATA syntax
 Unit4s REST APIs are using ODATA syntax to retrieve data. 
@@ -86,11 +92,8 @@ Below you can see an overview:
 You can find more helpful sources of information on the links below:
 
 https://www.odata.org/documentation/odata-version-2-0/uri-conventions/ 
-
 https://docs.microsoft.com/en-us/dynamics-nav/using-filter-expressions-in-odata-uris
-
 https://www.odata.org/getting-started/
-
 https://www.odata.org/documentation/odata-version-2-0/uri-conventions/
 
 
