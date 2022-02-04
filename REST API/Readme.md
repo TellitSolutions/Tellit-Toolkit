@@ -31,7 +31,11 @@ and test these via the Swagger UI as shown below:
 
 You can see details about each method and an overview of mandatory parameters and expected return value, by clicking on each method.
 An example of this can be seen below:
+
 ![SwaggerTest](https://user-images.githubusercontent.com/98328584/152490752-357cd986-d565-45fb-979e-443bd016d0c6.png)
+
+By filling in all mandatory parameters, you can test the API by pressing Try it out.
+A popup will open, so that you can enter the username and password (the API-user defined in the User Masterfile).
 
 
 # ODATA
