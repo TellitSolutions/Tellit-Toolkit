@@ -8,7 +8,9 @@ Some code examples are meant to showcase certain features in Extension Kit and W
 
 If you need some advise and support on how to use the latest tools from Unit4, you are more than welcome to contact us in Tellit Solutions.
 
-
+# How to navigate this site
+You navigate to the different sections by clicking on one of the two folders above, either **REST API** or **Extension Kit**.
+In each of these folders, there are a new Readme.md file introducing you to the differnt topics.
 
 # Unit4 Extension Kit
 
