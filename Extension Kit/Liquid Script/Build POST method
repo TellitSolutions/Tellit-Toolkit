@@ -1,0 +1,54 @@
+{% capture employeePost %}
+
+<soap-env:Envelope
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:uri="uri:FlexForce">
+    <soap-env:Body>
+        <ns0:wsdlUpdateEmployees
+            xmlns:ns0="uri:FlexForce">
+            <apiKey>{{tscostCentreApiKey}}</apiKey>
+            <employees>
+                <UpdateEmployee>
+                    <badgeNo>{{step2.ParsedContent.personId}}</badgeNo>
+                    <cardNo>{{step2.ParsedContent.personId}}</cardNo>
+                    <familyName>{{step2.ParsedContent.nameInformation.surname}}</familyName>
+                    <givenName>{{step2.ParsedContent.nameInformation.firstName}}</givenName>
+                    <address1>{{step2.ParsedContent.contactPoints[0].address.streetAddress}}</address1>
+                    <city>{{step2.ParsedContent.contactPoints[0].address.place}}</city>
+                    <zip>{{step2.ParsedContent.contactPoints[0].address.postcode}}</zip>
+                    <country>{{step2.ParsedContent.contactPoints[0].address.countryCode}}</country>
+                    <email>{{step2.ParsedContent.contactPoints[0].additionalContactInfo.eMailCc}}</email>
+                    <phoneNo>{{step2.ParsedContent.contactPoints[0].phoneNumbers.telephone1}}</phoneNo>
+                    <cellPhone>{{step2.ParsedContent.contactPoints[0].phoneNumbers.telephone4}}</cellPhone>
+                    <staffCat>{{staffCat}}</staffCat>
+                    {% if dateTo != "2099-12-31" %}
+                    <leaveDate>{{dateTo}}</leaveDate>
+                    <active>0</active> 
+                    {% endif %}
+ 					          {% if dateTo == "2099-12-31" %}
+                    <active>1</active> 
+                    {% endif %}
+                    <reportingTo>{{step11.Response[0].relationValue}}</reportingTo>
+                    <costCentreExtCode>{{costCenter}}</costCentreExtCode>
+                    <employedDate>{{step2.ParsedContent.dateFrom}}</employedDate>
+                    <dateOfBirth>{{step2.ParsedContent.birthDate}}</dateOfBirth>
+                    <nextOfKind>{{step8.ParsedContent[0].personName}}</nextOfKind>
+                    <nextPhone>{{step8.ParsedContent[0].telephone}}</nextPhone>
+                    <sex>{{sex}}</sex>
+                    <useQmail>1</useQmail>
+                    <shareAble>1</shareAble>
+					<keepShiftsOnMove>0</keepShiftsOnMove>
+                    <allowAttestOfOwnPunches>1</allowAttestOfOwnPunches>
+                    {{ rolesPost2 }}
+                </UpdateEmployee>
+            </employees>
+        </ns0:wsdlUpdateEmployees>
+    </soap-env:Body>
+</soap-env:Envelope>
+
+{% endcapture %}
+{{employeePost}}
