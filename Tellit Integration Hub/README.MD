@@ -52,6 +52,6 @@ The biggest advantage of Tellit Integration Hub is that it is independent of you
 To summarize, Extension Kit is an excellent tool to develop low complex / non-critical integrations. However, it is not accessible to all customers of Unit4 ERP.
 Tellit Integration Hub allows for more flexibility and a way to develop more complex integrations in a low-code environment. But, the more complexity you add, you also add costs.
 
-Tellit Solutions have choosen to use Tellit Integration Hub both in integrations for our internal development of our own ISV-solutions, and for customers looking for a platform that are modern, low-code, scalable and that can help them on their cloud-journey.
+Tellit Solutions have choosen to use Tellit Integration Hub both in integrations for our internal development of our own ISV-solutions, and for customers looking for a platform that are modern, low-code, scalable and that can help them on their cloud-journey. But, we still develop solutions in Extension Kit for apps aimed at Unit4 Marketplace and in scenarioes where the customer already has access to the Extension Kit platform.
 
 
