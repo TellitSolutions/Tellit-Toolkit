@@ -47,7 +47,7 @@ However, Extension Kit is not available to all customers of Unit4 ERP so we had 
 
 Tellit Integration Hub provides full flexibility as it supports all kinds of APIs, it has a flexible pricing model where you pay for usage, and you can write .Net/C# code which is familiar from over a decade of writing code in Agresso Customization Tool (ACT). The added flexibility of writing .Net/C# code gives endless possibilities, but that also come with a cost. Yes, you can solve any problem known to man, but the added flexibility could also mean that the cost of development increase. It all depends on the usecase really.
 
-The biggest advantage of Tellit Integration Hub is that it is independent of your ERP system. This mean you can develop integrations, where a lot of the functionality could be reused if you down the road would change ERP-system. As it is based on Azure Data Factory it also mean that sourcing consultants to develop integrations is easier.
+The biggest advantage of Tellit Integration Hub is that it is independent of your ERP system. This mean you can develop integrations, where a lot of the functionality could be reused if you down the road would change ERP-system or replace any of your 3rd party systems. As it is based on Azure Data Factory it also mean that sourcing consultants to develop integrations is easier than with any supplier specific plattform.
 
 To summarize, Extension Kit is an excellent tool to develop low complex / non-critical integrations. However, it is not accessible to all customers of Unit4 ERP.
 Tellit Integration Hub allows for more flexibility and a way to develop more complex integrations in a low-code environment. But, the more complexity you add, you also add costs.
