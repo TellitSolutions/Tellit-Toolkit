@@ -18,7 +18,7 @@ In each of these folders, there are a new Readme.md file introducing you to the 
 Integrations are becoming an increasingly important part of our customers' system landscape and with the launch of Tellit Integration Hub we can offer modern and scalable integrations. Tellit Integration Hub is based on Azure Data Factory, which is a cloud-based, serverless platform where we offer integrations as a service (IaaS), based on microservices.
 ![image](https://user-images.githubusercontent.com/112073908/214807473-7fc3a357-2f52-4a38-bc63-f3072e51647b.png)
 
-The advantage is that we can develop modern integrations independently of the ERP provider's integration platform, and help our customers reduce their technical debt. By using APIs, we can develop integrations where you can easily replace individual components you replace parts of their 3rd party systems.
+The advantage is that we can develop modern integrations independently of the ERP provider's integration platform, and help our customers reduce their technical debt. By using APIs, we can develop integrations where you can easily replace individual components, if you replace parts of your 3rd party systems.
 
 
 # Unit4 Extension Kit
