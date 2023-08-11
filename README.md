@@ -27,8 +27,8 @@ As part of the Unit4 People Platform, the Unit4 Extensions Kit delivers low/no-c
 Each Extension Flow consists of a trigger, one or multiple actions and a set of conditions. Extension Kit listens to the trigger and then automatically runs the actions if the conditions are met!
 
 Tellit Solutions is determined to be market leaders in Extension Kit, and to deliver innovate solutions to customers running Unit4 ERP worldwide.
-Tellit Solutions was the first Unit4 partner globally to deliver an App developed in Extension Kit for the upcoming Unit4 Marketplace. 
-Our App was showcased at the partner event in Boston.
+Tellit Solutions was the first Unit4 partner globally to deliver an App developed in Extension Kit for the Unit4 Marketplace. 
+This App was showcased by Unit4 at a partner event in Boston in 2022. By the launch of Unit4 Marketplace in January 2023, Tellit Solutions had 6 Apps ready, more than any other Unit4 partners combined.
 
 You can find documentation on Extension Kit here: https://docs-external.u4pp.com/extensions-kit/
 
