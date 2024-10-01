@@ -11,8 +11,9 @@ Some code examples are meant to showcase certain features in Extension Kit and W
 If you need some advise and support on how to use the latest tools from Unit4 or how to work more efficient with Unit4 ERP in Unit4 Cloud, you are more than welcome to contact us in Tellit Solutions.
 
 # How to navigate this site
-You navigate to the different sections by clicking on one of the two folders above, either **REST API** or **Extension Kit**.
-In each of these folders, there are a new Readme.md file introducing you to the differnt topics.
+You navigate to the different sections by clicking on one of the main folders above.
+The folders **REST API** and **Extension Kit** contains code samples and descriptions on how to utilize these Unit4 People Platform concepts.
+The folders **Tellit Custom APIs** and **Tellit Data Management** describes our toolbox and best practices on how we can support your cloud migration journey to Unit4 Cloud by finding solutions on how to modernize your integrations and support your system administrators in data corrections etc. In each of these folders, there are a new Readme.md file introducing you to the differnt topics.
 
 
 # Tellit Custom APIs
