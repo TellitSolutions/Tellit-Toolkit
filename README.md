@@ -2,15 +2,35 @@
 
 # Tellit Toolkit
 
+Tellit Toolkit is a collection of tools, best practices, know-how and examples on how to work get the most out of Unit4 ERP in Unit4 Cloud. 
 Tellit Toolkit contains examples, how-to guides, and fully working samples for Unit4 Extension Kit flows and examples on how to use Unit4 REST APIs.
+In addition, Tellit Toolkit offers a solution for customers who require import-APIs not covered by standard Unit4 CR and some best practices on how to solve "Data Management"/Update of data in Unit4 CR when there is no standard APIs.
 Tellit Solutions has decided to share some of our knowledge to inspire customers to start using the latest technology from Unit4.
 Some code examples are meant to showcase certain features in Extension Kit and Wanda, while others are more examples on how to solve a certain task.
 
-If you need some advise and support on how to use the latest tools from Unit4, you are more than welcome to contact us in Tellit Solutions.
+If you need some advise and support on how to use the latest tools from Unit4 or how to work more efficient with Unit4 ERP in Unit4 Cloud, you are more than welcome to contact us in Tellit Solutions.
 
 # How to navigate this site
 You navigate to the different sections by clicking on one of the two folders above, either **REST API** or **Extension Kit**.
 In each of these folders, there are a new Readme.md file introducing you to the differnt topics.
+
+
+# Tellit Custom APIs
+
+A lot of customers migrating to ERP CR in Unit4 Cloud face some challenges migrating existing integrations, due to lack of standard REST APIs.
+Tellit Solutions has developed some best practices on how you can import data to ERP CR using custom APIs that are compliant with Unit4 Cloud.
+Similary, we can support you in exposing both DB-views, reports and tables in REST APIs in order to modernize your integrations with any 3rd party systems.
+
+Tell us your challenge and we are happy to discuss how this can be solved. We have a few different options :)
+
+
+# Tellit Data Management
+
+One of the biggest concerns when moving Unit4 ERP from on-prem to Unit4 Cloud is the ability to quickly fix data issues du to lack of database access.
+Direct database access is usually not allowed in any cloud solutions, and Unit4 CR is no exception. This causes some concern with system administrators wondering how they can respond to request for fixing faulty data, do workarounds etc.
+Tellit Data Management is a collection of best practices and know-how gathered from years of working with customers running Unit4 ERP in Unit4 Cloud.
+
+Tellit Data Management is our solution on how to update or correct data in the database, without direct database access or a standard API.
 
 
 # Tellit Integration Hub
@@ -40,6 +60,7 @@ Tellit Solutions was the first Unit4 partner globally to deliver an App for the 
 For simple tasks, Wanda could be the preferred "user interface".
 
 Se example of using Wanda to inform end user:
+
 ![image](https://user-images.githubusercontent.com/98328584/150832575-2780e639-a1fa-488e-bbb3-ad8a5a4b3e4d.png)
 
 
