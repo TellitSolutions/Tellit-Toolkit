@@ -20,10 +20,15 @@ The folders **Tellit Custom APIs** and **Tellit Data Management** describes our 
 
 A lot of customers migrating to ERP CR in Unit4 Cloud face some challenges migrating existing integrations, due to lack of standard REST APIs.
 Tellit Solutions has developed some best practices on how you can import data to ERP CR using custom APIs that are compliant with Unit4 Cloud.
-Similary, we can support you in exposing both DB-views, reports and tables in REST APIs in order to modernize your integrations with any 3rd party systems.
+
+Similary, we can support you in exposing both DB-views, reports and database tables as REST APIs. This will replace your old direct database integrations, which typically is not allowed in a cloud environment.
+Let us support you in modernizing your integrations with any 3rd party systems.
+![image](https://github.com/user-attachments/assets/4b3dbccb-a50a-4efc-a256-f229b81ddd3f)
+
+
 
 Tell us your challenge and we are happy to discuss how this can be solved. We have a few different options :)
-
+Read more about what we can offer in the **Tellit Custom APIs** folder above.
 
 # Tellit Data Management
 
@@ -31,7 +36,11 @@ One of the biggest concerns when moving Unit4 ERP from on-prem to Unit4 Cloud is
 Direct database access is usually not allowed in any cloud solutions, and Unit4 CR is no exception. This causes some concern with system administrators wondering how they can respond to request for fixing faulty data, do workarounds etc.
 Tellit Data Management is a collection of best practices and know-how gathered from years of working with customers running Unit4 ERP in Unit4 Cloud.
 
-Tellit Data Management is our solution on how to update or correct data in the database, without direct database access or a standard API.
+![image](https://github.com/user-attachments/assets/863d6335-6947-43d8-81a2-a007371eef1f)
+
+
+Tellit Data Management is our solution on how to update or make corrections data in your ERP-database in Unit4 Cloud, without direct database access or a standard API.
+Read more about our best practices in the folder **Tellit Data Management** above.
 
 
 # Tellit Integration Hub
